@@ -60,12 +60,6 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
 
         charityPropertiesArray.forEach(function(charityItem) {
 
-            // if (charityItem.acceptingDonations === 0) {
-            //     charityItem.acceptingDonations = "No";
-            // } else {
-            //     charityItem.acceptingDonations = "Yes";
-            // }
-
             console.log(charityItem);
 
             if (charityItem.acceptingDonations === 1) {
