@@ -48,7 +48,7 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
            // params: {
                 user_key: `${charityApp.ApiKey}`,
                 eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
-                category: charityCategorySelection, // Category from /categories API Call
+                category: charityCategorySelection, // Category from categories API Call and user selection
                 rows: 20 // pagination
                 // ein: `590774235`
           //  } // params
