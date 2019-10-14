@@ -39,18 +39,19 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
     // AJAX returns a promise, that's why we can chain on methods after the AJAX
 
     const charityPropertiesPromise = $.ajax({
-        url: `http://proxy.hackeryou.com`,
+        // url: `http://proxy.hackeryou.com`,
+        url: `${charityApp.charitySearchBaseUrl}`,
         method: `GET`,
         dataType: `json`,
         data: {
-            reqUrl: `${charityApp.charitySearchBaseUrl}`,
-            params: {
+           // reqUrl: `${charityApp.charitySearchBaseUrl}`,
+           // params: {
                 user_key: `${charityApp.ApiKey}`,
                 eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
                 category: charityCategorySelection, // Category from /categories API Call
                 rows: 20 // pagination
                 // ein: `590774235`
-            } // params
+          //  } // params
         } // data
     }).then(function(charityPropertiesData) {
 
@@ -103,15 +104,16 @@ charityApp.getCharityCategories = () => {
 
     // API call returns the charity categories
     const charityCategoriesPromise = $.ajax({
-        url: `http://proxy.hackeryou.com`,
+     //   url: `http://proxy.hackeryou.com`,
+        url: `${charityApp.charityCategoriesBaseUrl}`,
         method: `GET`,
         dataType: `json`,
         data: {
-            reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
-            params: {
+       //     reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
+         //   params: {
                 user_key: `${charityApp.ApiKey}`
                 // searchTerm: `${charityApp.charitySelectValue}`
-            } // params
+          //  } // params
         } // data
     }).then(function(charityCategoriesData) {
 
