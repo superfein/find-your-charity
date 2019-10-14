@@ -46,20 +46,17 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
         data: {
            // reqUrl: `${charityApp.charitySearchBaseUrl}`,
            // params: {
-                user_key: `${charityApp.ApiKey}`,
-                eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
-                category: charityCategorySelection, // Category from categories API Call and user selection
-                rows: 20 // pagination
+            user_key: `${charityApp.ApiKey}`,
+            eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
+            category: charityCategorySelection, // Category from categories API Call and user selection
+            rows: 20 // pagination
                 // ein: `590774235`
           //  } // params
         } // data
     }).then(function(charityPropertiesData) {
 
         // console.log(charityPropertiesData);
-        const charityPropertiesArray = charityPropertiesData.data;
-
-
-        
+        const charityPropertiesArray = charityPropertiesData.data; 
 
         charityPropertiesArray.forEach(function(charityItem) {
 
@@ -111,7 +108,7 @@ charityApp.getCharityCategories = () => {
         data: {
        //     reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
          //   params: {
-                user_key: `${charityApp.ApiKey}`
+            user_key: `${charityApp.ApiKey}`
                 // searchTerm: `${charityApp.charitySelectValue}`
           //  } // params
         } // data
