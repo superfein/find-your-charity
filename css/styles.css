@@ -1,0 +1,73 @@
+
+html { 
+    /* margin-left: calc(100vw - 100%);  */
+    /* overflow-x: hidden; */
+    overflow-y: scroll;
+}        
+body {
+    font-family: sans-serif;
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+/* input[type='search'] {
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 1px solid cornflowerblue;
+} */
+select {
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    text-align: center;
+    
+}
+/* input[type='submit'] {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03rem;
+    color: #322424;
+    background: #82d0d5;
+    border: 2px solid #000;
+    padding: 1rem;
+    margin: 10px 0 30px;
+    cursor: pointer;
+} */
+label {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem 0;            
+}
+form {
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 50px;            
+}
+.charityResults {
+    display: flex;
+    padding: 1rem;
+    flex-flow: row wrap;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+}
+.charityItem {
+    display: none;
+    width: calc(33.333333333333% - 50px);
+    /* min-height: fill-available; */
+    /* height: max-content; */
+    padding: 1rem;
+    margin: 0.5rem;
+    border: 1px solid #000;            
+    word-wrap: break-word;
+}
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+.donateButton {
+    
+}
