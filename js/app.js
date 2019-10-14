@@ -2,11 +2,14 @@
 // Initialize empty object
 const charityApp = {};
 
+// Hacker You proxy URL
+charityApp.proxyUrl = `https://proxy.hackeryou.com`;
+
 // Charity Categories API base URL
-charityApp.charityCategoriesBaseUrl = `http://data.orghunter.com/v1/categories`;
+charityApp.charityCategoriesBaseUrl = `https://data.orghunter.com/v1/categories`;
 
 // Charity Search API base URL
-charityApp.charitySearchBaseUrl = `http://data.orghunter.com/v1/charitysearch`;
+charityApp.charitySearchBaseUrl = `https://data.orghunter.com/v1/charitysearch`;
 
 // Charity API Key
 charityApp.ApiKey = "de600b98a1ce36fe4ae72e0a3ad9e111";
@@ -39,19 +42,19 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
     // AJAX returns a promise, that's why we can chain on methods after the AJAX
 
     const charityPropertiesPromise = $.ajax({
-        // url: `http://proxy.hackeryou.com`,
-        url: `${charityApp.charitySearchBaseUrl}`,
+        url: `${charityApp.proxyUrl}`,
+       // url: `${charityApp.charitySearchBaseUrl}`,
         method: `GET`,
         dataType: `json`,
         data: {
-           // reqUrl: `${charityApp.charitySearchBaseUrl}`,
-           // params: {
-            user_key: `${charityApp.ApiKey}`,
-            eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
-            category: charityCategorySelection, // Category from categories API Call and user selection
-            rows: 20 // pagination
+           reqUrl: `${charityApp.charitySearchBaseUrl}`,
+           params: {
+                user_key: `${charityApp.ApiKey}`,
+                eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
+                category: charityCategorySelection, // Category from categories API Call and user selection
+                rows: 20 // pagination
                 // ein: `590774235`
-          //  } // params
+           } // params
         } // data
     }).then(function(charityPropertiesData) {
 
@@ -95,16 +98,16 @@ charityApp.getCharityCategories = () => {
 
     // API call returns the charity categories
     const charityCategoriesPromise = $.ajax({
-     //   url: `http://proxy.hackeryou.com`,
-        url: `${charityApp.charityCategoriesBaseUrl}`,
+       url: `${charityApp.proxyUrl}`,
+        // url: `${charityApp.charityCategoriesBaseUrl}`,
         method: `GET`,
         dataType: `json`,
         data: {
-       //     reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
-         //   params: {
-            user_key: `${charityApp.ApiKey}`
+           reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
+           params: {
+                user_key: `${charityApp.ApiKey}`
                 // searchTerm: `${charityApp.charitySelectValue}`
-          //  } // params
+           } // params
         } // data
     }).then(function(charityCategoriesData) {
 
