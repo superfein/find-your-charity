@@ -6,28 +6,50 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Charity Project</title>
 
+    <!-- Load fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap" rel="stylesheet">
+
     <!-- Load stylesheet -->
     <link rel="stylesheet" href="./css/styles.css" type="text/css" media="all">
 </head>
 <body>
+    <main class="mainContent">
+        <div class="heroContainer">
+            <header class="siteHeader">
+                <h1 class="siteTitle">The Charity Finder</h1>
+            </header>
 
-    <form>
-        <label for="categories">Find Your CHARITY</label>
-
-        <select name="categories" id="categorySelect">
-            <option value="" disabled selected>Select Your Charity Category</option>
-        </select>
-
-        <!-- <input type="submit" name="submit" value="Choose a Charity Category" /> -->
-    </form>
-
-    <section class="charityResults">
-
+            <section class="siteDescription">
+                <h2 class="siteTagline">So, you’re a giver?</h2>
+                <p>Never underestimate the power a single individual, like yourself, can make in this great big world. When we team up with other like-minded individuals, who care about making a positive impact in the world, truly great things can happen.</p>
+                <p>The Charity Finder’s main purpose is to help connect people who are looking to donate, find causes and organizations that align with their personal values and beliefs.</p>
+            </section>
+        </div>
+        <section class="charityFinder">    
+            <form>
+                <label class="charitySelectLabel" for="categories">Find Your Charity!</label>
+                <p class="charitySelectDescription">Use the category dropdown menu to find your charity.</p>
+                <select name="categories" id="categorySelect">
+                    <option value="" disabled selected>Select a category</option>
+                </select>
+            </form>
+        </section>
+    </main>    
+    <section class="charityFinderResults">
+        <div class="charityResults">
+        </div>
+        <button id="loadMore" class="hide loadMoreButton">Load More Charities</button>
     </section>
 
-    <!-- Load in jQuery -->
+    <!-- Load jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     
+    <!-- Load pagination -->
+    <!-- <script src="./js/pagination.min.js"></script> -->
+
+    <!-- Load Fitty -->
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/fitty.min.js"></script>
+
     <!-- Load app.js -->
     <script src="./js/app.js"></script>
 </body>

@@ -14,6 +14,12 @@ charityApp.charitySearchBaseUrl = `https://data.orghunter.com/v1/charitysearch`;
 // Charity API Key
 charityApp.ApiKey = "de600b98a1ce36fe4ae72e0a3ad9e111";
 
+// API Response Row Limit
+charityApp.rowLimit = 8;
+
+// Charity Item
+const charityClass = $(".charityItem");
+
 // Function which 
 charityApp.selectCharity = () => { 
     
@@ -25,9 +31,11 @@ charityApp.selectCharity = () => {
 
         // console.log(charityApp.selectValue);    
         // charityApp.charitySearchTerm = searchTermValue;
-
+        // console.time("random name of timer here");
+        // console.time("Time this");
         charityApp.getCharityProperties(charityApp.selectValue);
 
+        // console.timeEnd("random name of timer here");
         $(".charityResults").empty(); // Empty <section> before we search again
 
     });
@@ -37,7 +45,7 @@ charityApp.selectCharity = () => {
 // Returns a long list of available properties
 // One of the params I am using to filter the charities is the Charity category from the categories API call
 charityApp.getCharityProperties = (charityCategorySelection) => {
-
+    
     // jQuey AJAX method
     // AJAX returns a promise, that's why we can chain on methods after the AJAX
 
@@ -52,45 +60,79 @@ charityApp.getCharityProperties = (charityCategorySelection) => {
                 user_key: `${charityApp.ApiKey}`,
                 eligible: 1, // This only returns organizations that are tax deductible and in good standing with the IRS
                 category: charityCategorySelection, // Category from categories API Call and user selection
-                rows: 20 // pagination
+                rows: 8 // pagination
                 // ein: `590774235`
            } // params
         } // data
     }).then(function(charityPropertiesData) {
 
-        // console.log(charityPropertiesData);
-        const charityPropertiesArray = charityPropertiesData.data; 
+        const charityPropertiesArray = charityPropertiesData.data;
 
-        charityPropertiesArray.forEach(function(charityItem) {
+        // console.log(charityPropertiesArray);
 
-            console.log(charityItem);
+        let result = charityPropertiesArray.filter(obj => {
+            
+            // return obj.missionStatement !== "" && obj.acceptingDonations === 1;
+            return obj.acceptingDonations === 1;
+            
+        });
 
-            if (charityItem.acceptingDonations === 1) {
-                // Charity Search Results HTML
-                const charityProps = $(".charityResults").append(`
-                    <div class="charityItem">
-                        <ul>
-                            <li>Charity Name: ${charityItem.charityName}</li>
-                            <li>Mission Statement: ${charityItem.missionStatement}</li> 
-                            <li>Category: ${charityItem.category}</li>                           
-                            <li>City: ${charityItem.city}</li> 
-                            <li>State: ${charityItem.state}</li>
-                        </ul>
-                        <a class="donateButton" href='${charityItem.donationUrl}' title="${charityItem.charityName} donate link">Donate Now</a>
-                    </div>
-                `).delay(150);
+        result.forEach(function(charityItem) {
 
-                $(".charityItem").each(function(fadeInCharityItem) {
-                    $(this).delay(fadeInCharityItem * 150).fadeIn(500);
-                });
-            }
-        }); // end forEach()                    
+            // charityItem.charityName.toLowerCase()
+            // GOAL: Do not display mission statement if it's empty
 
+            let missionStatement = ``;
+
+            if (charityItem.missionStatement !== "") {
+                missionStatement = `
+                <small>Mission:</small>
+                <p class="missionStatement">${charityItem.missionStatement}</p>`;
+            }            
+
+            const charityProps = $(".charityResults").append(`
+                <div class="charityItem">
+                    <small>Charity:</small>
+                    <h3 class="charityName">${charityItem.charityName.toLowerCase()}</h3>
+                    <h4 class="charityCategory">${charityItem.category}</h4>
+                    <h5 class="charityLocation">Location: <span>${charityItem.city.toLowerCase()}, ${charityItem.state.toLowerCase()}</span></h5>
+                        ${missionStatement}
+                    <a class="donateButton" href='${charityItem.donationUrl}' title="Donate to ${charityItem.charityName}">Donate Now</a>
+                </div>
+            `).delay(50);
+
+            $(".charityItem").each(function(fadeInCharityItem) {
+                $(this).delay(fadeInCharityItem * 50).fadeIn(500);
+            });
+        }); // end forEach()
+              
+        // console.timeEnd("Time this"); 
+        
+        // setTimeout(function() {
+        //     $("#loadMore").removeClass("hide").addClass("show");
+        // }, 700);
+
+        // $("#loadMore").on("click", function() {
+
+            // event.preventDefault();
+
+            // charityApp.selectValue = $("select").val();
+
+            // console.log(charityApp.selectValue);
+
+            // charityApp.loadMoreCharities(charityApp.selectValue);
+            // for (let i = 0; i < $(".charityItem").length; i++) {
+            //     console.log($(".charityItem").length);
+            // }
+            // if ()
+
+
+        // });        
     }).catch(function(error) {
         console.log(error);
     });
-    // return charityPropertiesPromise;
-}   
+
+}
 
 // Charity Categories API Call
 // Returns a list of available categories as description strings
@@ -98,15 +140,13 @@ charityApp.getCharityCategories = () => {
 
     // API call returns the charity categories
     const charityCategoriesPromise = $.ajax({
-       url: `${charityApp.proxyUrl}`,
-        // url: `${charityApp.charityCategoriesBaseUrl}`,
+        url: `${charityApp.proxyUrl}`,
         method: `GET`,
         dataType: `json`,
         data: {
            reqUrl: `${charityApp.charityCategoriesBaseUrl}`,
            params: {
                 user_key: `${charityApp.ApiKey}`
-                // searchTerm: `${charityApp.charitySelectValue}`
            } // params
         } // data
     }).then(function(charityCategoriesData) {
@@ -121,7 +161,7 @@ charityApp.getCharityCategories = () => {
         filteredCharityCategoriesArray.forEach(function(charityItem) {
 
             const charityCategoriesDropdown = $("#categorySelect").append(`
-                <option value="${charityItem.categoryId}">${charityItem.categoryDesc}</option>
+                <option value="${charityItem.categoryId}">${charityItem.categoryDesc.toUpperCase()}</option>
             `);
 
         });
@@ -137,10 +177,27 @@ charityApp.init = () => {
 
     charityApp.getCharityCategories();
     charityApp.selectCharity();
+    // charityApp.pagination();
 }
 
 $(function () {
 
     charityApp.init();
+
+// charityApp.pagination = () => {
+
+    // $("#loadMore").on("click", function() {
+
+    //     // event.preventDefault();
+
+    //     charityApp.selectValue = $("select").val();
+
+    //     console.log(charityApp.selectValue);
+
+    //     charityApp.loadMoreCharities(charityApp.selectValue);
+
+    // });
+// }
+fitty('h1');
 
 });
