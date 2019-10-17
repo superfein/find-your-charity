@@ -161,7 +161,7 @@ charityApp.getCharityCategories = () => {
         filteredCharityCategoriesArray.forEach(function(charityItem) {
 
             const charityCategoriesDropdown = $("#categorySelect").append(`
-                <option value="${charityItem.categoryId}">${charityItem.categoryDesc.toUpperCase()}</option>
+                <option value="${charityItem.categoryId}">${charityItem.categoryDesc}</option>
             `);
 
         });

@@ -86,15 +86,15 @@ form {
     padding-top: 1.5rem;            
 }
 select {
-    font-size: 1.1rem;
+    font-size: 0.96rem;
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    max-width: 500px;
+    max-width: 550px;
     padding: 0.8rem 0;
     background: #E5BF4E;
     color: #19A793;
-    border: 4px solid #19A793;    
+    border: 4px solid #19A793;  
 }
 .charitySelectLabel {
     font-size: 1.5rem;
@@ -125,7 +125,7 @@ small {
 }
 .charityItem {
     display: none;
-    max-width: 500px;
+    max-width: 550px;
     padding: 1rem 0 3rem;
     margin: 0 auto;
     border-bottom: 2px solid #0948AB;            
