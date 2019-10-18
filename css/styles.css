@@ -1,15 +1,12 @@
+/* Charity Finder App CSS */
 
-html { 
-    /* margin-left: calc(100vw - 100%);  */
-    /* overflow-x: hidden; */
-    /* overflow-y: scroll; */
-}        
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: normal;
     padding: 0;
     margin: 0;
+    background: #CFE0F9;
     overflow-x: hidden;
 }
 h1,
@@ -19,8 +16,10 @@ h4,
 h5,
 h6,
 p,
+form,
 select,
-label {
+label,
+small {
     font-family: 'Montserrat', sans-serif;
 }
 .mainContent {
@@ -32,24 +31,13 @@ label {
     padding-bottom: 3rem;
 }
 .heroContainer {
-    /* display: grid; */
     grid-column: 2;
     grid-row: 2;
     max-width: 640px;
+    padding-bottom: 0.8rem;
     border-bottom: 3px solid #19A793;    
 }
-.siteHeader {
-    /* grid-column: 2;
-    grid-row: 2; */
-    /* text-align: center; */
-    /* padding: 3rem 0 1rem; */
-    /* max-width: 700px; */
-    /* margin: 0 auto; */
-    /* display: inline-block; */
-}
 .siteTitle {
-    /* display: inline;
-    font-size: calc(2.3rem + 1.5vw); */
     font-weight: 600;
     text-transform: uppercase;
     color: #E65D6E;
@@ -63,12 +51,6 @@ label {
     color: #EA9B82;
     margin: 2.5rem 0 0;
 }
-.siteDescription {
-    /* grid-column: 2;
-    grid-row: 3;     */
-    /* max-width: 650px; */
-    /* margin: 0 auto; */
-}
 .siteDescription p {
     font-size: 1.1rem;
     color: #FBEBE6;
@@ -81,15 +63,13 @@ label {
 form {
     display: flex;
     flex-flow: column wrap;
-    /* max-width: 500px; */
-    /* margin: 0 auto; */
     padding-top: 1.5rem;            
 }
 select {
-    font-size: 0.96rem;
+    font-size: 1rem;
     font-weight: 600;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: capitalize;
     max-width: 550px;
     padding: 0.8rem 0;
     background: #E5BF4E;
@@ -101,7 +81,7 @@ select {
     font-weight: 600;
     text-align: center;
     text-transform: uppercase;
-    padding: 1rem 0;  
+    padding: 1rem 0 0.2rem;
     color: #EA9B82; 
 }
 .charitySelectDescription {
@@ -111,11 +91,6 @@ select {
     font-weight: 600;
 }
 .charityResults {
-    /* display: flex; */
-    /* padding: 1rem; */
-    /* flex-flow: column wrap;
-    margin-left: -0.5rem;
-    margin-right: -0.5rem; */
     background: #CFE0F9;
 }
 small {
@@ -126,10 +101,13 @@ small {
 .charityItem {
     display: none;
     max-width: 550px;
-    padding: 1rem 0 3rem;
-    margin: 0 auto;
+    padding: 1rem 0 2rem;
+    margin: 0 auto 1rem;
     border-bottom: 2px solid #0948AB;            
     word-wrap: break-word;
+}
+.charityItem:last-of-type {
+    border-bottom: none;
 }
 .charityName {
     font-size: 1.4rem;
@@ -139,12 +117,15 @@ small {
     margin: 0.2rem 0 0;
 }
 .charityCategory {
+    font-size: calc(0.8rem + 0.2vw);  
     text-transform: uppercase;
     color: #19A793;
+    margin: 0.6rem 0;
 }
 .charityLocation {
     text-transform: uppercase;
     color: #E65D6E;
+    margin: 0.8rem 0 1.5rem;
 }
 .charityLocation span {
     text-transform: capitalize;
@@ -152,7 +133,6 @@ small {
 .missionStatement {
     font-weight: 600;
     color: #0948AB;
-    /* padding-bottom: 2.5rem; */
     margin: 0.4rem 0 1.5rem 0;
 }
 .donateButton {
@@ -166,15 +146,6 @@ small {
     background: #E5BF4E;
     border: 3px solid #19A793;
 }
-/* .loadMoreButton {
-    background: #FFF;
-    border: 1px solid #000;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 1rem;
-    margin: 0.5rem auto 4rem;
-    cursor: pointer;
-} */
 .hide {
     display: none;
 }
